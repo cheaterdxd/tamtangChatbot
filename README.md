@@ -30,15 +30,30 @@ Place your files in `data/` folder, then run:
 python src/main.py ingest
 ```
 
-### Query Data
+### Chat with Data
+**1. Cloud Models (Gemini, GPT, Claude)**
+Default uses Gemini (Free):
 ```bash
-python src/main.py query "Your question here"
+python src/main.py chat-cloud "Your question?"
+```
+To use OpenAI or Claude (requires keys in .env):
+```bash
+python src/main.py chat-cloud "Your question?" --provider openai
+python src/main.py chat-cloud "Your question?" --provider anthropic
+```
+
+**2. Local Models (Ollama)**
+Ensure you have [Ollama](https://ollama.com) installed and running (`ollama serve`).
+Default model is `llama3` (change in `.env` if needed).
+```bash
+python src/main.py chat-local "Your question?"
 ```
 
 ## Configuration
 Adjust settings in `src/config.py`:
 - `RPM_LIMIT`, `TPM_LIMIT`: Tune for your specific plan.
 - `CHUNK_SIZE`: Adjust text splitting size.
+- `OLLAMA_MODEL`: Set your local model name.
 
 # Tài liệu tam tạng sử dụng
 - https://tipitaka.org/romn/#4 

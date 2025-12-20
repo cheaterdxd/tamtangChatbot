@@ -5,3 +5,6 @@ langchain-chroma
 chromadb
 pypdf
 python-dotenv
+langchain-openai
+langchain-anthropic
+langchain-ollama

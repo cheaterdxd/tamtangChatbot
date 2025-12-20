@@ -45,9 +45,18 @@ def main():
     # Ingest command
     subparsers.add_parser("ingest", help="Ingest documents from /data folder")
 
-    # Query command
-    query_parser = subparsers.add_parser("query", help="Query the vector database")
+    # Query command (Raw Retrieval)
+    query_parser = subparsers.add_parser("query", help="Raw retrieval from vector database")
     query_parser.add_argument("text", type=str, help="Query text")
+
+    # Cloud Chat command
+    chat_cloud_parser = subparsers.add_parser("chat-cloud", help="Chat using Cloud LLMs (Gemini, OpenAI, Claude)")
+    chat_cloud_parser.add_argument("question", type=str, help="Your question")
+    chat_cloud_parser.add_argument("--provider", type=str, default="gemini", choices=["gemini", "openai", "anthropic"], help="LLM Provider")
+
+    # Local Chat command
+    chat_local_parser = subparsers.add_parser("chat-local", help="Chat using Local LLM (Ollama)")
+    chat_local_parser.add_argument("question", type=str, help="Your question")
 
     args = parser.parse_args()
 
@@ -55,6 +64,18 @@ def main():
         run_ingest()
     elif args.command == "query":
         run_query(args.text)
+    elif args.command == "chat-cloud":
+        from src.chat_cloud import ChatCloud
+        bot = ChatCloud(provider=args.provider)
+        print(f"🤖 (Cloud - {args.provider}) Thinking...")
+        answer = bot.chat(args.question)
+        print(f"\n💡 Answer:\n{answer}\n")
+    elif args.command == "chat-local":
+        from src.chat_local import ChatLocal
+        bot = ChatLocal()
+        print(f"🤖 (Local - Ollama) Thinking...")
+        answer = bot.chat(args.question)
+        print(f"\n💡 Answer:\n{answer}\n")
 
 if __name__ == "__main__":
     main()
