@@ -1,0 +1,24 @@
+{
+  "version": "1.0",
+  "backend_name": "hnsw",
+  "embedding_model": "intfloat/multilingual-e5-large",
+  "dimensions": 1024,
+  "backend_kwargs": {
+    "graph_degree": 32,
+    "complexity": 64,
+    "is_recompute": true,
+    "is_compact": true
+  },
+  "embedding_mode": "sentence-transformers",
+  "passage_sources": [
+    {
+      "type": "jsonl",
+      "path": "truong_bo_kinh.leann.passages.jsonl",
+      "index_path": "truong_bo_kinh.leann.passages.idx",
+      "path_relative": "truong_bo_kinh.leann.passages.jsonl",
+      "index_path_relative": "truong_bo_kinh.leann.passages.idx"
+    }
+  ],
+  "is_compact": true,
+  "is_pruned": true
+}

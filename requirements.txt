@@ -8,3 +8,8 @@ python-dotenv
 langchain-openai
 langchain-anthropic
 langchain-ollama
+crawl4ai
+beautifulsoup4
+torch
+langchain-huggingface
+sentence-transformers
